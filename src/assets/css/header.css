@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .h-header {
+    @apply h-[120px] ;
+  }
+  header {
+    @apply bg-black;
+  }
+  header .nav {
+    @apply flex justify-between items-center h-full;
+  }
+  .wave-decor-menu {
+    @apply bg-orange-e21 absolute right-0 top-0 w-full h-full transition-none;
+  }
+  .menu-header-list{
+    @apply text-3xl capitalize flex flex-col gap-6 text-black font-light pt-3;
+  }
+}

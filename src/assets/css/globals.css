@@ -1,0 +1,111 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* :root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+} */
+
+@layer utilities {
+  .dot {
+    @apply w-[5px] h-[5px] aspect-square rounded-full bg-orange-e21;
+  }
+  .pt-header {
+    @apply pt-32;
+  }
+}
+
+@layer base {
+  body,
+  html {
+    @apply w-full h-full;
+  }
+  body {
+    @apply bg-[#000000] font-poppins text-white;
+  }
+}
+
+@layer components {
+  .container {
+    @apply px-4;
+  }
+  .marquee__content {
+    @apply flex overflow-visible justify-between items-center min-w-full flex-shrink-0;
+  }
+  .headline-section {
+    @apply uppercase text-[40px] tracking-wide relative py-1;
+  }
+  .headline-section:after {
+    content: "";
+    @apply absolute bottom-0 left-0 w-[61px] bg-white h-[1px];
+  }
+  .container-section {
+    @apply pl-[180px] pt-[100px];
+  }
+  .section__container {
+    @apply flex flex-wrap gap-16 justify-start items-center pt-24;
+  }
+  .section__side {
+    @apply w-[307px];
+  }
+  .section__side img {
+    @apply w-full h-auto;
+  }
+  .section__context {
+    @apply flex-1;
+  }
+}
+
+@keyframes animate {
+  0% {
+    translate: 40% -25%;
+    border-radius: 60% 40% 30% 70% / 100% 85% 92% 74%;
+  }
+  50% {
+    translate: 0% 13%;
+    border-radius: 20% 71% 47% 70% / 81% 15% 22% 54%;
+    rotate: 41deg;
+    scale: 1.15;
+  }
+  100% {
+    translate: -45% 39%;
+    border-radius: 100% 75% 92% 74% / 60% 80% 30% 70%;
+    rotate: -60deg;
+    scale: 1.05;
+  }
+}
+
+@keyframes scroll-marquee-1 {
+  to {
+    transform: translateX(calc(-100% - 20px));
+  }
+}
+
