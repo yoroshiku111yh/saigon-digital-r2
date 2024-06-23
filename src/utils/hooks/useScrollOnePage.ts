@@ -18,6 +18,7 @@ interface TypeProps {
 export default function useScrollOnePage(props: TypeProps) {
     const { onScrollDown, onScrollUp, wheelSpeed, typeScroll } = props;
     const [isAnimating, setAnimating] = useState<boolean>(false);
+    const [isDisable , setIsDisable] = useState<boolean>(false);
     useEffect(() => {
         let obser = Observer.create({
             type: typeScroll.toString(),
@@ -31,13 +32,20 @@ export default function useScrollOnePage(props: TypeProps) {
             tolerance: 10,
             preventDefault: true,
         });
+        if(isDisable){
+            obser.disable();
+        }
+        else{
+            obser.enable();
+        }
         return () => {
             if (obser)
                 obser.kill();
         };
-    }, [isAnimating]);
+    }, [isAnimating, isDisable]);
     return {
         isAnimating,
-        setAnimating
+        setAnimating,
+        setIsDisable
     }
 }

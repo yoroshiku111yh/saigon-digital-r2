@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useState } from "react";
 import useBodyOverflowToggle from "@/utils/hooks/useBodyOverflowToggle ";
 import ContentMenu from "./components/contain-menu";
-
+import { useGetContext } from "../providers";
 
 export default function Header() {
   const [isOpenMenu, setOpenMenu] = useState<boolean | null>(null);
@@ -15,6 +15,7 @@ export default function Header() {
     toggleBodyOverflow();
     setOpenMenu(!isOpenMenu);
   };
+  const { setIsOpenSearch } = useGetContext();
   return (
     <>
       <header className="h-header fixed w-full left-0 right-0 z-30">
@@ -39,6 +40,7 @@ export default function Header() {
           </Link>
           <div className="flex gap-10 justify-end items-center">
             <svg
+              onClick={() => setIsOpenSearch(true)}
               width="19"
               height="19"
               viewBox="0 0 19 19"

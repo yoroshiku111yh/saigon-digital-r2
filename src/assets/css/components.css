@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .marquee__content {
+    @apply flex overflow-visible justify-between items-center min-w-full flex-shrink-0;
+  }
+  .headline-section {
+    @apply uppercase text-[40px] tracking-wide relative py-1;
+  }
+  .headline-section:after {
+    content: "";
+    @apply absolute bottom-0 left-0 w-[61px] bg-white h-[1px];
+  }
+  .btn-common {
+    @apply text-center capitalize text-2xl px-2 py-2 overflow-hidden relative inline-block rounded-md transition-all duration-150;
+  }
+  .btn-common:hover {
+    @apply shadow-yellow-600 shadow-md;
+  }
+  .btn-common:hover:after {
+    @apply scale-[10];
+  }
+  .btn-common:after {
+    content: "";
+    background: url("/images/ico-1.png") no-repeat;
+    background-size: content;
+    @apply absolute aspect-[45/35] w-[45px] h-[35px] top-0 bottom-0 left-0 right-0 m-auto z-[-1] transition-all duration-150;
+  }
+  .card-text {
+    @apply flex flex-col gap-4 max-w-[24.75rem];
+  }
+  .card-text__title {
+    @apply text-[2rem] leading-normal;
+  }
+  .card-text__context {
+    @apply line-clamp-4 leading-normal;
+  }
+}

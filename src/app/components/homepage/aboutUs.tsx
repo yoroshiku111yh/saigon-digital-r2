@@ -15,12 +15,34 @@ function AboutUs(props: TypePropsWrappedComponent) {
     isShow,
     scrollDone,
   } = props;
-  const contextTypingRef = useRef(null);
+  const titleRef = useRef(null);
+  const contextRef = useRef(null);
+  const instanceTypeTitle = useRef<null | any>(null);
+  const instanceTypeContext = useRef<null | any>(null);
   useEffect(() => {
-    if (isShow && scrollDone && contextTypingRef.current) {
-      new TypeIt(contextTypingRef.current, {
+    if (!instanceTypeTitle.current && titleRef.current) {
+      instanceTypeTitle.current = new TypeIt(titleRef.current, {
         speed: 10,
+        afterComplete: (instance: any) => instance.destroy(),
       }).go();
+    }
+    if (!instanceTypeContext.current && contextRef.current) {
+      instanceTypeContext.current = new TypeIt(contextRef.current, {
+        speed: 12,
+        afterComplete: (instance: any) => instance.destroy(),
+      }).go();
+    }
+  }, []);
+  useEffect(() => {
+    if (isShow && scrollDone) {
+      if (instanceTypeTitle.current) {
+        instanceTypeTitle.current.reset();
+        instanceTypeTitle.current.go();
+      }
+      if (instanceTypeContext.current) {
+        instanceTypeContext.current.reset();
+        instanceTypeContext.current.go();
+      }
     }
   }, [isShow, scrollDone]);
   return (
@@ -37,23 +59,33 @@ function AboutUs(props: TypePropsWrappedComponent) {
         </div>
         <div className="section__context" ref={sideContext}>
           <div className="flex flex-col w-full gap-6">
-            <h5 className="text-[40px] uppercase pb-3">
-              we are a digital production team.
-            </h5>
+            <div className="text-[40px] uppercase pb-3 relative">
+              <h5 className="opacity-0">we are a digital production team.</h5>
+              <h5 className="absolute top-0 left-0" ref={titleRef}>
+                we are a digital production team.
+              </h5>
+            </div>
             <div className="text-[32px] uppercase tracking-wide leading-relaxed relative">
               <div className="opacity-0">
                 Gleamy is a <i>leading</i> design & software development agency
                 based in berlin. We help startups & Fortune 500 companies
                 delight humans on the other side of the screen.
               </div>
-              <div className="absolute top-0 left-0" ref={contextTypingRef}>
+              <div className="absolute top-0 left-0" ref={contextRef}>
                 Gleamy is a <i>leading</i> design & software development agency
                 based in berlin. We help startups & Fortune 500 companies
                 delight humans on the other side of the screen.
+                <Image
+                  className="inline translate-x-[11px] -translate-y-[8px]"
+                  src="/images/ico-1.png"
+                  alt=""
+                  width={45}
+                  height={35}
+                />
               </div>
             </div>
             <div>
-              <Link className="capitalize text-2xl" href="/">
+              <Link className="btn-common" href="/">
                 Contact Us
               </Link>
             </div>

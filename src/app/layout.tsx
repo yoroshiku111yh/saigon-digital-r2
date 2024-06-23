@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import "../assets/css/globals.css";
+import "../assets/css/components.css";
+import "../assets/css/animate.css";
 import Header from "./layout/header";
+import { ContextCommonProvider } from "./providers";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,8 +18,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Header />
-        {children}
+        <ContextCommonProvider>
+          <Header />
+          {children}
+        </ContextCommonProvider>
       </body>
     </html>
   );
