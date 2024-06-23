@@ -10,7 +10,6 @@ import Services from "./components/homepage/services";
 import Portfolio from "./components/homepage/portfolio";
 import VerticalNavBar from "./components/verticalNavBar";
 import Image from "next/image";
-import PopupSearch from "./components/popupSearch";
 import { useGetContext } from "./providers";
 
 gsap.registerPlugin(useGSAP);
@@ -58,24 +57,26 @@ export default function Home() {
   }, [isPauseScrollSection]);
   useGSAP(
     () => {
-      setAnimating(true);
-      const transYIndex = sectionIndex;
-      gsap.to(parentRef.current, {
-        y: -window.innerHeight * transYIndex,
-        duration: 1,
-        ease: "expo.inOut",
-        delay: 0.1,
-        onComplete: () => {
-          setAnimating(false);
-        },
-      });
+      if (!isAnimating) {
+        setAnimating(true);
+        const transYIndex = sectionIndex;
+        gsap.to(parentRef.current, {
+          y: -window.innerHeight * transYIndex,
+          duration: 1,
+          ease: "expo.inOut",
+          delay: 0.1,
+          onComplete: () => {
+            setAnimating(false);
+          },
+        });
+      }
     },
     { scope: parentRef, dependencies: [sectionIndex] }
   );
   return (
     <>
       <main className="overflow-hidden w-full h-dvh">
-        <div className="fixed top-[138px] left-[99px] w-[97px] aspect-square z-10">
+        <div className="fixed md:top-[8.125rem] top-16 md:left-16 left-auto md:right-auto right-1 md:w-[6.063rem] w-20 aspect-square z-10">
           <Image
             className="w-full h-auto animate-[spin_7s_ease-in-out_infinite]"
             src="/images/block-circle-logo.png"
@@ -91,7 +92,7 @@ export default function Home() {
             height={35}
           />
         </div>
-        <div className="fixed bottom-[39px] right-[75px] w-[110px] aspect-square z-10">
+        <div className="fixed md:bottom-10 bottom-6 md:right-16 right-6 md:w-28 w-20 aspect-square z-10">
           <Image
             className="w-full h-auto animate-[spin_7s_ease-in-out_infinite]"
             src="/images/watch-video.png"
@@ -100,7 +101,7 @@ export default function Home() {
             alt=""
           />
           <Image
-            className="absolute top-0 left-0 bottom-0 right-0 m-auto"
+            className="absolute top-0 left-0 bottom-0 right-0 m-auto animate-pulse"
             src="/images/ico-play.png"
             alt=""
             width={13}
@@ -108,7 +109,7 @@ export default function Home() {
           />
         </div>
         <div
-          className={`w-[217px] flex flex-col items-center justify-center bg-black text-white fixed top-0 bottom-0 left-0 pb-8 `}
+          className={`md:w-32 w-10 lg:flex flex-col items-center justify-center bg-black text-white fixed top-0 bottom-0 left-0 md:pb-8 pb-12 hidden`}
         >
           <VerticalNavBar>
             <span className="text-sm">DEVELOPMENT</span>
@@ -120,7 +121,7 @@ export default function Home() {
           <div className=" w-full h-dvh panel pt-header relative">
             <TopBanner isShow={sectionIndex === 0} scrollDone={!isAnimating} />
           </div>
-          <div className=" w-full h-dvh panel pt-header relative">
+          {/* <div className=" w-full h-dvh panel pt-header relative">
             <AboutUs isShow={sectionIndex === 1} scrollDone={!isAnimating} />
           </div>
           <div className=" w-full h-dvh panel pt-header relative">
@@ -128,10 +129,9 @@ export default function Home() {
           </div>
           <div className=" w-full h-dvh panel pt-header relative">
             <Portfolio isShow={sectionIndex === 3} scrollDone={!isAnimating} />
-          </div>
+          </div> */}
         </div>
       </main>
-      <PopupSearch />
     </>
   );
 }

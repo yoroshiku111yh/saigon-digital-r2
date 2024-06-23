@@ -4,6 +4,7 @@ import "../assets/css/components.css";
 import "../assets/css/animate.css";
 import Header from "./layout/header";
 import { ContextCommonProvider } from "./providers";
+import PopupSearch from "./components/popupSearch";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,6 +22,7 @@ export default function RootLayout({
         <ContextCommonProvider>
           <Header />
           {children}
+          <PopupSearch />
         </ContextCommonProvider>
       </body>
     </html>

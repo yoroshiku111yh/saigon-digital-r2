@@ -14,6 +14,7 @@ export default function ContentMenu(props: {
   const container = useRef(null);
   const waveDecor = useRef(null);
   const containMenu = useRef(null);
+  const btnExitRef = useRef(null);
   useGSAP(
     () => {
       if (isOpen) {
@@ -89,31 +90,40 @@ export default function ContentMenu(props: {
       <div ref={waveDecor} className="wave-decor-menu z-20"></div>
       <div className="w-screen absolute top-0 left-0 right-0 z-20">
         <div className="flex justify-end items-center container mx-auto relative h-header">
-          <div className="cursor-pointer" onClick={onClick}>
+          <div className={`cursor-pointer hamburger ${isOpen && "-open"}`} onClick={onClick} ref={btnExitRef} >
             <svg
-              width="29"
-              height="13"
-              viewBox="0 0 29 13"
-              fill="none"
+            className="stroke-black"
+              stroke="#fff"
+              width="48px"
+              height="48px"
+              viewBox="0 0 48 48"
+              version="1.1"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <path d="M0.875 2H28.875" stroke="black" strokeWidth="3" />
-              <path d="M0.875 11H19.375" stroke="black" strokeWidth="3" />
+              <g>
+                <line x1="0" y1="17" x2="48" y2="17" strokeWidth="4" />
+                <line x1="0" y1="31" x2="32" y2="31" strokeWidth="4" />
+              </g>
+
+              <g>
+                <line x1="0" y1="24" x2="48" y2="24" strokeWidth="4" />
+                <line x1="0" y1="24" x2="48" y2="24" strokeWidth="4" />
+              </g>
             </svg>
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-2 h-full">
+      <div className="flex lg:flex-row flex-col [&>*]:flex-1 h-full w-full md:overflow-hidden overflow-auto">
         <SideDecor />
         <div
-          className="flex flex-wrap gap-10 pt-header px-6 [&>*]:min-w-fit [&>*]:flex-1"
+          className=" lg:justify-start justify-center flex flex-wrap lg:flex-row flex-col lg:gap-10 gap-5 lg:pt-header py-4 lg:px-6 px-4 [&>*]:min-w-fit lg:[&>*]:flex-1"
           ref={containMenu}
         >
-          <div className="flex flex-col gap-4 flex-auto">
+          <div className="flex flex-col xl:gap-4 lg:gap-2 gap-0 lg:text-left text-center">
             <h4 className="text-xl text-black capitalize font-light text-gray-400">
               Menu
             </h4>
-            <ul className="menu-header-list text-5xl font-semibold">
+            <ul className="menu-header-list xl:text-5xl lg:text-3xl text-2xl font-semibold">
               <li>
                 <Link href="/">About us</Link>
               </li>
@@ -125,7 +135,7 @@ export default function ContentMenu(props: {
               </li>
             </ul>
           </div>
-          <div className="flex flex-col gap-4 flex-auto">
+          <div className="flex flex-col lg:gap-4 gap-0 lg:text-left text-center">
             <h4 className="text-xl text-black capitalize font-light text-gray-400">
               Social
             </h4>
@@ -141,27 +151,36 @@ export default function ContentMenu(props: {
               </li>
             </ul>
           </div>
-          <div className="flex flex-col gap-4 flex-auto flex-[2]">
+          <div className="flex flex-col lg:gap-4 gap-0 lg:flex-[2] lg:text-left text-center">
             <h4 className="text-xl text-black capitalize font-light text-gray-400">
               Contact
             </h4>
             <ul className="menu-header-list">
               <li>
                 <Link href="/">
-                  <strong>Phone:</strong> (555) 123-4567
+                  <strong className="lg:inline block">Phone:</strong> (555) 123-4567
                 </Link>
               </li>
               <li>
                 <Link href="/">
-                  <strong>Email:</strong> john.doe@example.com
+                  <strong className="lg:inline block">Email:</strong> john.doe@example.com
                 </Link>
               </li>
               <li>
                 <Link href="/">
-                  <strong>Address:</strong> 123 Main St, Springfield, IL 62701
+                  <strong className="lg:inline block">Address:</strong> 123 Main St, Springfield, IL 62701
                 </Link>
               </li>
             </ul>
+          </div>
+          <div className="flex-row flex md:hidden gap-4 text-sm text-black uppercase justify-center items-center">
+            <Link href="/">FB</Link>
+            <span className="dot"></span>
+            <Link href="/">IN</Link>
+            <span className="dot"></span>
+            <Link href="/">DR</Link>
+            <span className="dot"></span>
+            <Link href="/">BE</Link>
           </div>
         </div>
       </div>
@@ -171,7 +190,7 @@ export default function ContentMenu(props: {
 
 function SideDecor() {
   return (
-    <div className="bg-black flex justify-center items-center relative">
+    <div className="bg-black justify-center items-center relative lg:flex hidden">
       <Image
         className="aspect-[307/469] max-w-[70%] z-10"
         src="/images/g-logo.png"

@@ -1,3 +1,5 @@
+"use client"
+
 import { useEffect, useRef } from "react";
 import { useGetContext } from "../providers";
 import { useOnClickOutside } from "usehooks-ts";
@@ -20,9 +22,9 @@ export default function PopupSearch() {
   return (
     <>
       {isOpenSearch && (
-        <div className="fixed top-0 left-0 bottom-0 right-0 z-50 w-full h-full bg-black/35 flex justify-center items-center overflow-hidden">
+        <div className="fixed top-0 left-0 bottom-0 right-0 z-50 w-full h-full bg-black/35 flex justify-center items-start overflow-hidden px-4">
           <div
-            className="w-[47.375rem] mx-auto relative bg-slate-900 rounded-xl py-5 lg:max-h-96 max-h-72 flex flex-col"
+            className="w-[47.375rem] mx-auto relative bg-slate-900 rounded-xl py-5 lg:max-h-96 max-h-72 flex flex-col mt-20"
             ref={wrapperRef}
           >
             <div className="flex flex-row justify-between items-center gap-3 pb-5 px-4 ">

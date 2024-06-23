@@ -7,10 +7,10 @@
 
 @layer utilities {
   .dot {
-    @apply w-[5px] h-[5px] aspect-square rounded-full bg-orange-e21;
+    @apply w-[0.313rem] h-[0.313rem] aspect-square rounded-full bg-orange-e21;
   }
   .pt-header {
-    @apply pt-32;
+    @apply lg:pt-32 pt-16;
   }
 }
 
@@ -19,8 +19,11 @@
   html {
     @apply w-full h-full;
   }
+  html {
+    font-size : 16px;
+  }
   body {
-    @apply bg-[#000000] font-poppins text-white;
+    @apply bg-[#000000] font-poppins text-white text-base;
   }
 }
 
@@ -29,13 +32,13 @@
     @apply px-4;
   }
   .container-section {
-    @apply pl-[180px] pt-[100px];
+    @apply pl-[6.25rem] pt-14;
   }
   .section__container {
-    @apply flex flex-wrap gap-16 justify-start items-center pt-24;
+    @apply flex flex-wrap gap-16 justify-start items-center pt-14;
   }
   .section__side {
-    @apply w-[230px];
+    @apply w-[14.375rem];
   }
   .section__side img {
     @apply w-full h-auto;
@@ -46,3 +49,6 @@
 }
 
 
+.flickity-enabled {
+  outline : none;
+}

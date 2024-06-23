@@ -54,7 +54,7 @@ function withScrollSectionAnimation(
                 speed: 100,
               });
               text.start();
-              text.reveal(1000);
+              text.reveal(700);
             },
           },
           "label-1"

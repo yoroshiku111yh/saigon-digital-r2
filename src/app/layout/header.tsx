@@ -20,7 +20,7 @@ export default function Header() {
     <>
       <header className="h-header fixed w-full left-0 right-0 z-30">
         <div className="nav container mx-auto">
-          <div className="inline-flex gap-4 text-sm text-white uppercase justify-start items-center">
+          <div className="flex-row md:flex hidden gap-4 text-sm text-white uppercase justify-start items-center">
             <Link href="/">FB</Link>
             <span className="dot"></span>
             <Link href="/">IN</Link>
@@ -29,16 +29,16 @@ export default function Header() {
             <span className="dot"></span>
             <Link href="/">BE</Link>
           </div>
-          <Link href="/">
+          <Link href="/" className="xl:w-[13rem] lg:w-44 md:w-32 w-28 block">
             <Image
-              className="w-auto h-auto"
+              className="w-full h-auto"
               src="/images/logo.png"
               alt="logo"
               width={206}
               height={56}
             />
           </Link>
-          <div className="flex gap-10 justify-end items-center">
+          <div className="flex lg:gap-10 gap-4 justify-end items-center">
             <svg
               onClick={() => setIsOpenSearch(true)}
               width="19"
@@ -60,16 +60,26 @@ export default function Header() {
                 onClick={onClickMenu}
               >
                 <span>MENU</span>
-                <svg
-                  width="29"
-                  height="13"
-                  viewBox="0 0 29 13"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M0.875 2H28.875" stroke="white" strokeWidth="3" />
-                  <path d="M0.875 11H19.375" stroke="white" strokeWidth="3" />
-                </svg>
+                <div className={`cursor-pointer hamburger ${isOpenMenu && "-open"}`}>
+                  <svg
+                    stroke="#fff"
+                    width="48px"
+                    height="48px"
+                    viewBox="0 0 48 48"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g>
+                      <line x1="0" y1="17" x2="48" y2="17" strokeWidth="4" />
+                      <line x1="0" y1="31" x2="32" y2="31" strokeWidth="4" />
+                    </g>
+
+                    <g>
+                      <line x1="0" y1="24" x2="48" y2="24" strokeWidth="4" />
+                      <line x1="0" y1="24" x2="48" y2="24" strokeWidth="4" />
+                    </g>
+                  </svg>
+                </div>
               </div>
             </div>
           </div>

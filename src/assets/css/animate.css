@@ -22,3 +22,11 @@
     transform: translateX(calc(-100% - 20px));
   }
 }
+
+@keyframes scroll-marquee-2 {
+  to {
+    transform: translateX(calc(-100% + 20px));
+  }
+}
+
+
