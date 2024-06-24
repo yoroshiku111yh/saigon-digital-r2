@@ -28,7 +28,7 @@ export interface TypePropsWrappedComponent extends TypePropsScroll {
 function withScrollSectionAnimation(
   WrappedComponent: ComponentType<TypePropsWrappedComponent>
 ) {
-  return (props: TypePropsScroll) => {
+  const HocWithScroll = (props: TypePropsScroll) => {
     const { scrollDone, isShow } = props;
     const containerRef = useRef(null);
     const headlineRef = useRef(null);
@@ -112,6 +112,10 @@ function withScrollSectionAnimation(
       />
     );
   };
+  HocWithScroll.displayName = `WithScrollSectionAnimation(${
+    WrappedComponent.displayName || WrappedComponent.name || "Component"
+  })`;
+  return HocWithScroll;
 }
 
 export default withScrollSectionAnimation;

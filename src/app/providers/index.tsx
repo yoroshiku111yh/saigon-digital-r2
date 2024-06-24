@@ -1,13 +1,24 @@
 "use client";
 
-import { ReactNode, createContext, useContext, useEffect, useState } from "react";
+import {
+  MutableRefObject,
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
 interface TypeContext {
   isOpenSearch: boolean;
   setIsOpenSearch: (isOpenSearch: boolean) => void;
   isPauseScrollSection: boolean;
   setIsPauseScrollSection: (isPause: boolean) => void;
-  isMobile : boolean;
+  isMobile: boolean;
+  isLoading: boolean;
+  setIsLoading: (isPause: boolean) => void;
+  mainElmRef: MutableRefObject<HTMLElement | null>;
 }
 
 const ContextCommon = createContext<null | TypeContext>(null);
@@ -18,11 +29,13 @@ export const ContextCommonProvider = (props: { children: ReactNode }) => {
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const [isPauseScrollSection, setIsPauseScrollSection] =
     useState<boolean>(false);
-    useEffect(() => {
-      if (window.innerWidth < 1024) {
-        setIsMobile(true);
-      }
-    }, []);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const mainElmRef = useRef(null);
+  useEffect(() => {
+    if (window.innerWidth < 1024) {
+      setIsMobile(true);
+    }
+  }, []);
   return (
     <ContextCommon.Provider
       value={{
@@ -30,7 +43,10 @@ export const ContextCommonProvider = (props: { children: ReactNode }) => {
         setIsOpenSearch,
         isPauseScrollSection,
         setIsPauseScrollSection,
-        isMobile
+        isMobile,
+        isLoading,
+        setIsLoading,
+        mainElmRef,
       }}
     >
       {children}

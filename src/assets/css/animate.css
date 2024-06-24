@@ -43,7 +43,7 @@
 
 @keyframes glow-svg-1 {
   from {
-    fill: #19E96A;
+    fill: #19e96a;
   }
   to {
     fill: #3c3c3c;
@@ -52,7 +52,7 @@
 
 @keyframes glow-svg-3 {
   from {
-    fill: #E9D86C;
+    fill: #e9d86c;
   }
   to {
     fill: #3c3c3c;
@@ -61,9 +61,36 @@
 
 @keyframes glow-svg-2 {
   from {
-    fill: #2C55E9;
+    fill: #2c55e9;
   }
   to {
     fill: #3c3c3c;
+  }
+}
+
+@keyframes loaded-animate-logo {
+  0% {
+    top: 0;
+  }
+  25% {
+    top: 30px;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    top: -83vh;
+    opacity: 0.5;
+  }
+}
+
+@keyframes blur-fade-away {
+  from {
+    opacity: 1;
+    filter: blur(0);
+  }
+  to {
+    opacity: 0;
+    filter: blur(10px);
   }
 }

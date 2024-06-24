@@ -8,21 +8,21 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      fontFamily : {
-        "poppins" : ["Poppins", "sans-serif"]
+      fontFamily: {
+        "poppins": ["Poppins", "sans-serif"]
       },
-      backgroundColor : {
-        "orange-e21" : "#FF7E21",
-        "black" : "#000",
-        "white" : "#FFF",
-        "gray-21" : "#212121"
+      backgroundColor: {
+        "orange-e21": "#FF7E21",
+        "black": "#000",
+        "white": "#FFF",
+        "gray-21": "#212121"
       },
-      textColor : {
-        "gray-21" : "#212121"
+      textColor: {
+        "gray-21": "#212121"
       },
-      container : {
-        screens : {
-          "2xl" : "1750px"
+      container: {
+        screens: {
+          "2xl": "1750px"
         }
       },
       backgroundImage: {
@@ -32,6 +32,8 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require("tailwindcss-animate"),
+  ],
 };
 export default config;

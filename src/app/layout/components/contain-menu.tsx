@@ -116,43 +116,43 @@ export default function ContentMenu(props: {
       <div className="flex lg:flex-row flex-col [&>*]:flex-1 h-full w-full md:overflow-hidden overflow-auto">
         <SideDecor />
         <div
-          className=" lg:justify-start justify-center flex flex-wrap lg:flex-row flex-col lg:gap-10 gap-5 lg:pt-header py-4 lg:px-6 px-4 [&>*]:min-w-fit lg:[&>*]:flex-1"
+          className="md:pt-12 pt-8 lg:justify-start justify-center flex flex-wrap lg:flex-row flex-col lg:gap-10 gap-5 lg:pt-header py-4 lg:px-6 px-4 [&>*]:min-w-fit lg:[&>*]:flex-1"
           ref={containMenu}
         >
           <div className="flex flex-col xl:gap-4 lg:gap-2 gap-0 lg:text-left text-center">
-            <h4 className="text-xl text-black capitalize font-light text-gray-400">
+            <h4 className="text-xl  capitalize font-light text-gray-400">
               Menu
             </h4>
             <ul className="menu-header-list xl:text-5xl lg:text-3xl text-2xl font-semibold">
               <li>
-                <Link href="/">About us</Link>
+                <Link className="link-btn py-1 px-2 -active" href="/">About us</Link>
               </li>
               <li>
-                <Link href="/">Services</Link>
+                <Link className="link-btn py-1 px-2" href="/">Services</Link>
               </li>
               <li>
-                <Link href="/">Portfolio</Link>
+                <Link className="link-btn py-1 px-2" href="/">Portfolio</Link>
               </li>
             </ul>
           </div>
           <div className="flex flex-col lg:gap-4 gap-0 lg:text-left text-center">
-            <h4 className="text-xl text-black capitalize font-light text-gray-400">
+            <h4 className="text-xl capitalize font-light text-gray-400">
               Social
             </h4>
             <ul className="menu-header-list">
               <li>
-                <Link href="/">instagram</Link>
+                <Link className="link-btn py-1 px-2" href="/">instagram</Link>
               </li>
               <li>
-                <Link href="/">Facebook</Link>
+                <Link className="link-btn py-1 px-2" href="/">Facebook</Link>
               </li>
               <li>
-                <Link href="/">twitter</Link>
+                <Link className="link-btn py-1 px-2" href="/">twitter</Link>
               </li>
             </ul>
           </div>
           <div className="flex flex-col lg:gap-4 gap-0 lg:flex-[2] lg:text-left text-center">
-            <h4 className="text-xl text-black capitalize font-light text-gray-400">
+            <h4 className="text-xl  capitalize font-light text-gray-400">
               Contact
             </h4>
             <ul className="menu-header-list">

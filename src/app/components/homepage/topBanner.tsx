@@ -132,7 +132,7 @@ export default function TopBanner(props: {
           </div>
           <div
             ref={textDecor}
-            className="absolute top-0 md:-left-[10%] left-0 md:right-auto right-0 md:bottom-auto bottom-0 m-auto z-0 2xl:w-[18vw] xl:w-[16vw] md:w-[20vw] w-36"
+            className="absolute md:-left-[10%] left-0 md:right-auto right-0 md:bottom-auto bottom-0 m-auto z-0 2xl:w-[18vw] xl:w-[16vw] md:w-[20vw] w-[40vw] md:block flex justify-center items-center md:top-0 top-16"
           >
             <GlogoSVG classPath="animate-[neon-glow-svg_2s_ease-in-out_infinite_alternate]" />
           </div>

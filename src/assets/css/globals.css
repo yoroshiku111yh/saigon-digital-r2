@@ -4,16 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
-@layer utilities {
-  .dot {
-    @apply w-[0.313rem] h-[0.313rem] aspect-square rounded-full bg-orange-e21;
-  }
-  .pt-header {
-    @apply lg:pt-32 pt-3;
-  }
-}
-
 @layer base {
   body,
   html {
@@ -23,7 +13,7 @@
     font-size : 16px;
   }
   body {
-    @apply bg-[#000000] font-poppins text-white text-base;
+    @apply bg-[#000000] font-poppins text-white text-base md:pb-0 pb-7;
   }
 }
 

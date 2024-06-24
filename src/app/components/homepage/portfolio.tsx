@@ -79,7 +79,7 @@ function Portfolio(props: TypePropsWrappedComponent) {
         >
           <Flickity options={flickityOptions}>
             <div>
-              <div className="card-image-item mr-12">
+              <Link href="/" className="card-image-item mr-12">
                 <div className="card-image-item__headline">
                   <h5>Phomi</h5>
                 </div>
@@ -98,117 +98,7 @@ function Portfolio(props: TypePropsWrappedComponent) {
                     <Link href="/">UI/UX</Link>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div>
-              <div className="card-image-item mr-12">
-                <div className="card-image-item__headline">
-                  <h5>Phomi</h5>
-                </div>
-                <div className="card-image-item__thumbnail">
-                  <Image
-                    src="/images/thumb-1.png"
-                    alt="thumb-1"
-                    width={400}
-                    height={300}
-                  />
-                </div>
-                <div className="card-image-item__contain">
-                  <h5 className="card-image-item__title">Gleamy portfolio</h5>
-                  <div className="flex flex-row gap-3 justify-center items-center text-base font-light">
-                    <span className="dot"></span>
-                    <Link href="/">UI/UX</Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div className="card-image-item mr-12">
-                <div className="card-image-item__headline">
-                  <h5>Phomi</h5>
-                </div>
-                <div className="card-image-item__thumbnail">
-                  <Image
-                    src="/images/thumb-1.png"
-                    alt="thumb-1"
-                    width={400}
-                    height={300}
-                  />
-                </div>
-                <div className="card-image-item__contain">
-                  <h5 className="card-image-item__title">Gleamy portfolio</h5>
-                  <div className="flex flex-row gap-3 justify-center items-center text-base font-light">
-                    <span className="dot"></span>
-                    <Link href="/">UI/UX</Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div className="card-image-item mr-12">
-                <div className="card-image-item__headline">
-                  <h5>Phomi</h5>
-                </div>
-                <div className="card-image-item__thumbnail">
-                  <Image
-                    src="/images/thumb-1.png"
-                    alt="thumb-1"
-                    width={400}
-                    height={300}
-                  />
-                </div>
-                <div className="card-image-item__contain">
-                  <h5 className="card-image-item__title">Gleamy portfolio</h5>
-                  <div className="flex flex-row gap-3 justify-center items-center text-base font-light">
-                    <span className="dot"></span>
-                    <Link href="/">UI/UX</Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div className="card-image-item mr-12">
-                <div className="card-image-item__headline">
-                  <h5>Phomi</h5>
-                </div>
-                <div className="card-image-item__thumbnail">
-                  <Image
-                    src="/images/thumb-1.png"
-                    alt="thumb-1"
-                    width={400}
-                    height={300}
-                  />
-                </div>
-                <div className="card-image-item__contain">
-                  <h5 className="card-image-item__title">Gleamy portfolio</h5>
-                  <div className="flex flex-row gap-3 justify-center items-center text-base font-light">
-                    <span className="dot"></span>
-                    <Link href="/">UI/UX</Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div className="card-image-item mr-12">
-                <div className="card-image-item__headline">
-                  <h5>Phomi</h5>
-                </div>
-                <div className="card-image-item__thumbnail">
-                  <Image
-                    src="/images/thumb-1.png"
-                    alt="thumb-1"
-                    width={400}
-                    height={300}
-                  />
-                </div>
-                <div className="card-image-item__contain">
-                  <h5 className="card-image-item__title">Gleamy portfolio</h5>
-                  <div className="flex flex-row gap-3 justify-center items-center text-base font-light">
-                    <span className="dot"></span>
-                    <Link href="/">UI/UX</Link>
-                  </div>
-                </div>
-              </div>
+              </Link>
             </div>
           </Flickity>
         </div>

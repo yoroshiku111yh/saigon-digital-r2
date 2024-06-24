@@ -69,34 +69,34 @@ export default function PopupSearch() {
             <div className="overflow-auto flex-1">
               <h5 className="text-lg px-4 py-5">Result :</h5>
               <div className="flex flex-col gap-0">
-                <div className="text-sm text-gray-400 py-2 hover:bg-white/5 transition-colors cursor-pointer px-4 py-4">
+                <div className="text-sm text-gray-400  hover:bg-white/5 transition-colors cursor-pointer p-4">
                   Get started with Tailwind CSS
                 </div>
-                <div className="text-sm text-gray-400 py-2 hover:bg-white/5 transition-colors cursor-pointer px-4 py-4">
+                <div className="text-sm text-gray-400  hover:bg-white/5 transition-colors cursor-pointer p-4">
                   Get started with Tailwind CSS
                 </div>
-                <div className="text-sm text-gray-400 py-2 hover:bg-white/5 transition-colors cursor-pointer px-4 py-4">
+                <div className="text-sm text-gray-400  hover:bg-white/5 transition-colors cursor-pointer p-4">
                   Get started with Tailwind CSS
                 </div>
-                <div className="text-sm text-gray-400 py-2 hover:bg-white/5 transition-colors cursor-pointer px-4 py-4">
+                <div className="text-sm text-gray-400  hover:bg-white/5 transition-colors cursor-pointer p-4">
                   Get started with Tailwind CSS
                 </div>
-                <div className="text-sm text-gray-400 py-2 hover:bg-white/5 transition-colors cursor-pointer px-4 py-4">
+                <div className="text-sm text-gray-400  hover:bg-white/5 transition-colors cursor-pointer p-4">
                   Get started with Tailwind CSS
                 </div>
-                <div className="text-sm text-gray-400 py-2 hover:bg-white/5 transition-colors cursor-pointer px-4 py-4">
+                <div className="text-sm text-gray-400  hover:bg-white/5 transition-colors cursor-pointer p-4">
                   Get started with Tailwind CSS
                 </div>
-                <div className="text-sm text-gray-400 py-2 hover:bg-white/5 transition-colors cursor-pointer px-4 py-4">
+                <div className="text-sm text-gray-400  hover:bg-white/5 transition-colors cursor-pointer p-4">
                   Get started with Tailwind CSS
                 </div>
-                <div className="text-sm text-gray-400 py-2 hover:bg-white/5 transition-colors cursor-pointer px-4 py-4">
+                <div className="text-sm text-gray-400  hover:bg-white/5 transition-colors cursor-pointer p-4">
                   Get started with Tailwind CSS
                 </div>
-                <div className="text-sm text-gray-400 py-2 hover:bg-white/5 transition-colors cursor-pointer px-4 py-4">
+                <div className="text-sm text-gray-400  hover:bg-white/5 transition-colors cursor-pointer p-4">
                   Get started with Tailwind CSS
                 </div>
-                <div className="text-sm text-gray-400 py-2 hover:bg-white/5 transition-colors cursor-pointer px-4 py-4">
+                <div className="text-sm text-gray-400  hover:bg-white/5 transition-colors cursor-pointer p-4">
                   Get started with Tailwind CSS
                 </div>
               </div>

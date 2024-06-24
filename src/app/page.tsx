@@ -18,7 +18,7 @@ export default function Home() {
   const [sectionIndex, setSectionIndex] = useState<number>(0);
   const parentRef = useRef(null);
   const sectionElements = useRef<NodeListOf<Element> | null>(null);
-  const { isMobile } = useGetContext();
+  const { isMobile, mainElmRef } = useGetContext();
   useEffect(() => {
     let sections = document.querySelectorAll(".panel");
     sectionElements.current = sections;
@@ -82,7 +82,7 @@ export default function Home() {
   const _scrollDone = isMobile ? true : !isAnimating;
   return (
     <>
-      <main className="lg:overflow-hidden w-full lg:h-dvh">
+      <main className="lg:overflow-hidden w-full lg:h-dvh" ref={mainElmRef}>
         <BtnFloat1 />
         <BtnFloat2 />
         <div
