@@ -89,11 +89,11 @@ export default function TopBanner(props: {
   );
   return (
     <div className="w-full h-full" ref={containerRef}>
-      <div className="absolute w-full h-full overflow-hidden top-0 left-0">
-        <div className="overflow-visible w-3 h-3 flex justify-center items-center absolute bottom-[7vh] right-0 left-0 m-auto z-20">
+      <div className="absolute w-full h-full overflow-x-clip overflow-y-visible top-0 left-0">
+        <div className="overflow-visible w-3 h-3 flex justify-center items-center absolute lg:bottom-[7vh] bottom-7 right-0 left-0 m-auto z-20">
           <div
             ref={marqueeRef1}
-            className="origin-center md:-rotate-[13deg] rotate-0 2xl:h-[6.5rem] xl:h-20 md:h-16 h-12 w-[120vw] bg-gray-21 uppercase text-3xl"
+            className="origin-center md:-rotate-[10deg] rotate-0 2xl:h-[6.5rem] xl:h-20 md:h-16 h-12 w-[120vw] bg-gray-21 uppercase text-3xl"
           >
             <Marquee
               gap="2xl:gap-20 xl:gap-14 gap-10"

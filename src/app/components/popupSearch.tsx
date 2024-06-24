@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { useGetContext } from "../providers";
 import { useOnClickOutside } from "usehooks-ts";
+import useBodyOverflowToggle from "@/utils/hooks/useBodyOverflowToggle ";
 
 export default function PopupSearch() {
   const { isOpenSearch, setIsOpenSearch, setIsPauseScrollSection } =
@@ -11,6 +12,7 @@ export default function PopupSearch() {
   const handleClickOutside = () => {
     setIsOpenSearch(false);
   };
+  const {toggleBodyOverflow} = useBodyOverflowToggle(false);
   useOnClickOutside(wrapperRef, handleClickOutside);
   useEffect(() => {
     if (isOpenSearch) {
@@ -18,13 +20,14 @@ export default function PopupSearch() {
     } else {
       setIsPauseScrollSection(false);
     }
+    toggleBodyOverflow();
   }, [isOpenSearch]);
   return (
     <>
       {isOpenSearch && (
         <div className="fixed top-0 left-0 bottom-0 right-0 z-50 w-full h-full bg-black/35 flex justify-center items-start overflow-hidden px-4">
           <div
-            className="w-[47.375rem] mx-auto relative bg-slate-900 rounded-xl py-5 lg:max-h-96 max-h-72 flex flex-col mt-20"
+            className="w-[47.375rem] max-w-full mx-auto relative bg-slate-900 rounded-xl py-5 lg:max-h-96 max-h-72 flex flex-col md:mt-20 mt-10"
             ref={wrapperRef}
           >
             <div className="flex flex-row justify-between items-center gap-3 pb-5 px-4 ">

@@ -60,7 +60,7 @@ function Services(props: TypePropsWrappedComponent) {
           <Image src="/images/s.png" alt="" width={300} height={380} />
         </div>
         <div className="section__context" ref={sideContext}>
-          <div className="flex flex-row flex-wrap [&>*]:flex-1 [&>*]:min-w-52 gap-8">
+          <div className="flex lg:flex-row flex-col flex-wrap [&>*]:flex-1 [&>*]:min-w-52 gap-8">
             <div className="card-text">
               <h6 className="card-text__title">Brand Identity.</h6>
               <div className="card-text__context">
@@ -105,7 +105,7 @@ function Services(props: TypePropsWrappedComponent) {
       </div>
       <Image
         ref={textDecorRef}
-        className="absolute bottom-3 left-0 aspect-[1294/156] w-[80.875rem] z-0 max-w-fit"
+        className="absolute bottom-3 left-0 aspect-[1294/156] w-[80.875rem] z-0 max-w-full lg:block hidden"
         src="/images/text-large-decor.png"
         alt=""
         width={1294}

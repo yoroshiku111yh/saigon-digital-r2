@@ -44,7 +44,7 @@ function AboutUs(props: TypePropsWrappedComponent) {
         instanceTypeContext.current.go();
       }
     }
-  }, [isShow, scrollDone]);
+  }, [scrollDone]);
   return (
     <div className="container mx-auto container-section" ref={containerRef}>
       <div className="headline-section relative">

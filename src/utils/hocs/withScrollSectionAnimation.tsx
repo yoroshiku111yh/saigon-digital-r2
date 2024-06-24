@@ -1,3 +1,4 @@
+import { useGetContext } from "@/app/providers";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import {
@@ -37,6 +38,7 @@ function withScrollSectionAnimation(
       () => gsap.timeline({ paused: true, yoyo: true }),
       []
     );
+    const { isMobile } = useGetContext();
     useEffect(() => {
       timeline
         .fromTo(
@@ -88,13 +90,17 @@ function withScrollSectionAnimation(
     }, []);
     useGSAP(
       () => {
-        if (scrollDone && isShow) {
+        if (!isMobile) {
+          if (scrollDone && isShow) {
+            timeline.play();
+          } else if (!isShow) {
+            timeline.reverse();
+          }
+        } else {
           timeline.play();
-        } else if (!isShow) {
-          timeline.reverse();
         }
       },
-      { scope: containerRef, dependencies: [scrollDone , isShow] }
+      { scope: containerRef, dependencies: [scrollDone, isMobile] }
     );
     return (
       <WrappedComponent

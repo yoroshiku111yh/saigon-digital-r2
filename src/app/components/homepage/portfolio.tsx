@@ -58,7 +58,7 @@ function Portfolio(props: TypePropsWrappedComponent) {
     { scope: containerRef, dependencies: [scrollDone, isShow] }
   );
   return (
-    <div className="container mx-auto mr-0 container-section" ref={containerRef}>
+    <div className="container mx-auto mr-0 pr-0 container-section pb-7" ref={containerRef}>
       <div className="headline-section relative">
         <h4 className="absolute top-0 left-0" ref={headlineRef}>
           Portfolio
@@ -69,7 +69,7 @@ function Portfolio(props: TypePropsWrappedComponent) {
         <div className="section__side" ref={sideBlockRef}>
           <Image src="/images/p.png" alt="" width={300} height={380} />
         </div>
-        <div className="section__context overflow-y-visible overflow-x-clip" ref={sideContext}>
+        <div className="section__context overflow-y-visible overflow-x-clip w-full" ref={sideContext}>
           <Flickity options={flickityOptions}>
             <div>
               <div className="card-image-item mr-12">
@@ -208,7 +208,7 @@ function Portfolio(props: TypePropsWrappedComponent) {
       </div>
       <Image
         ref={textDecorRef}
-        className="absolute bottom-3 left-0 aspect-[1294/156] w-[80.875rem] z-0"
+        className="absolute bottom-3 left-0 aspect-[1294/156] w-[80.875rem] z-0 max-w-full lg:block hidden"
         src="/images/text-large-decor.png"
         alt=""
         width={1294}
