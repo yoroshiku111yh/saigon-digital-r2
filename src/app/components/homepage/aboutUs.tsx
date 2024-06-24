@@ -58,14 +58,14 @@ function AboutUs(props: TypePropsWrappedComponent) {
           <Image src="/images/g.png" alt="" width={300} height={380} />
         </div>
         <div className="section__context" ref={sideContext}>
-          <div className="flex flex-col w-full gap-6">
-            <div className="text-[40px] uppercase pb-3 relative">
+          <div className="flex flex-col w-full lg:gap-6 gap-3">
+            <div className="lg:text-[2.5rem] text-3xl uppercase pb-3 relative">
               <h5 className="opacity-0">we are a digital production team.</h5>
               <h5 className="absolute top-0 left-0" ref={titleRef}>
                 we are a digital production team.
               </h5>
             </div>
-            <div className="text-[32px] uppercase tracking-wide leading-relaxed relative">
+            <div className="lg:text-[2rem] text-2xl uppercase tracking-wide leading-relaxed relative">
               <div className="opacity-0">
                 Gleamy is a <i>leading</i> design & software development agency
                 based in berlin. We help startups & Fortune 500 companies
@@ -76,7 +76,7 @@ function AboutUs(props: TypePropsWrappedComponent) {
                 based in berlin. We help startups & Fortune 500 companies
                 delight humans on the other side of the screen.
                 <Image
-                  className="inline translate-x-[11px] -translate-y-[8px]"
+                  className="inline translate-x-[11px] -translate-y-[8px] aspect-[45/35] lg:w-auto w-7"
                   src="/images/ico-1.png"
                   alt=""
                   width={45}

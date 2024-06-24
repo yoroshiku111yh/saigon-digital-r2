@@ -32,13 +32,13 @@
     @apply px-4;
   }
   .container-section {
-    @apply pl-[6.25rem] pt-14;
+    @apply md:pl-[6.25rem] md:pt-14 px-6 pt-6;
   }
   .section__container {
-    @apply flex flex-wrap gap-16 justify-start items-center pt-14;
+    @apply flex xl:flex-row flex-col flex-wrap xl:gap-16 gap-10 justify-start items-center pt-14 relative;
   }
   .section__side {
-    @apply w-[14.375rem];
+    @apply xl:w-[14.375rem] md:w-[35%] w-[50%] xl:relative xl:top-auto xl:right-auto absolute z-0 top-0 right-10;
   }
   .section__side img {
     @apply w-full h-auto;

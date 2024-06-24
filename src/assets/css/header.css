@@ -7,7 +7,7 @@
     @apply lg:h-[7.5rem] h-16;
   }
   header {
-    @apply bg-transparent;
+    @apply lg:bg-transparent bg-black;
   }
   header .nav {
     @apply flex justify-between items-center h-full flex-row flex-wrap;

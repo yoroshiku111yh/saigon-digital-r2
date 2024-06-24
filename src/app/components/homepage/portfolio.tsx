@@ -55,7 +55,7 @@ function Portfolio(props: TypePropsWrappedComponent) {
         timeline.reverse();
       }
     },
-    { scope: containerRef, dependencies: [scrollDone] }
+    { scope: containerRef, dependencies: [scrollDone, isShow] }
   );
   return (
     <div className="container mx-auto mr-0 container-section" ref={containerRef}>

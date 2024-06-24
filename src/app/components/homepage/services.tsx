@@ -45,7 +45,7 @@ function Services(props: TypePropsWrappedComponent) {
         timeline.reverse();
       }
     },
-    { scope: containerRef, dependencies: [scrollDone] }
+    { scope: containerRef, dependencies: [scrollDone, isShow] }
   );
   return (
     <div className="container mx-auto container-section" ref={containerRef}>
@@ -105,7 +105,7 @@ function Services(props: TypePropsWrappedComponent) {
       </div>
       <Image
         ref={textDecorRef}
-        className="absolute bottom-3 left-0 aspect-[1294/156] w-[80.875rem] z-0"
+        className="absolute bottom-3 left-0 aspect-[1294/156] w-[80.875rem] z-0 max-w-fit"
         src="/images/text-large-decor.png"
         alt=""
         width={1294}

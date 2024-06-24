@@ -94,7 +94,7 @@ function withScrollSectionAnimation(
           timeline.reverse();
         }
       },
-      { scope: containerRef, dependencies: [scrollDone] }
+      { scope: containerRef, dependencies: [scrollDone , isShow] }
     );
     return (
       <WrappedComponent

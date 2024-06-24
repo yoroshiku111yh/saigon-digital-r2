@@ -3,7 +3,7 @@
 import useScrollOnePage from "@/utils/hooks/useScrollOnePage";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { useEffect, useRef, useState } from "react";
+import { ReactElement, useCallback, useEffect, useRef, useState } from "react";
 import TopBanner from "./components/homepage/topBanner";
 import AboutUs from "./components/homepage/aboutUs";
 import Services from "./components/homepage/services";
@@ -11,6 +11,7 @@ import Portfolio from "./components/homepage/portfolio";
 import VerticalNavBar from "./components/verticalNavBar";
 import Image from "next/image";
 import { useGetContext } from "./providers";
+import { useInView } from "react-intersection-observer";
 
 gsap.registerPlugin(useGSAP);
 
@@ -18,9 +19,14 @@ export default function Home() {
   const [sectionIndex, setSectionIndex] = useState<number>(0);
   const parentRef = useRef(null);
   const sectionElements = useRef<NodeListOf<Element> | null>(null);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
   useEffect(() => {
     let sections = document.querySelectorAll(".panel");
     sectionElements.current = sections;
+    console.log(window.innerWidth);
+    if (window.innerWidth < 1024) {
+      setIsMobile(true);
+    }
   }, []);
 
   const { isPauseScrollSection } = useGetContext();
@@ -49,15 +55,19 @@ export default function Home() {
   });
 
   useEffect(() => {
-    if (isPauseScrollSection) {
-      setIsDisable(true);
+    if (!isMobile) {
+      if (isPauseScrollSection) {
+        setIsDisable(true);
+      } else {
+        setIsDisable(false);
+      }
     } else {
-      setIsDisable(false);
+      setIsDisable(true);
     }
-  }, [isPauseScrollSection]);
+  }, [isPauseScrollSection, isMobile]);
   useGSAP(
     () => {
-      if (!isAnimating) {
+      if (!isAnimating && !isMobile) {
         setAnimating(true);
         const transYIndex = sectionIndex;
         gsap.to(parentRef.current, {
@@ -73,10 +83,24 @@ export default function Home() {
     },
     { scope: parentRef, dependencies: [sectionIndex] }
   );
+  const { ref: refTopBanner, inView: inviewTopbanner } = useInView({});
+  const { ref: refAboutus, inView: inviewAboutus } = useInView({});
+
+  useEffect(() => {
+    if (isMobile) {
+      if (inviewTopbanner) {
+        setSectionIndex(0);
+      }
+      if (inviewAboutus) {
+        setSectionIndex(1);
+      }
+    }
+  }, [inviewTopbanner, inviewAboutus]);
+  const _scrollDone = isMobile ? true : !isAnimating;
   return (
     <>
-      <main className="overflow-hidden w-full h-dvh">
-        <div className="fixed md:top-[8.125rem] top-16 md:left-16 left-auto md:right-auto right-1 md:w-[6.063rem] w-20 aspect-square z-10">
+      <main className="lg:overflow-hidden w-full lg:h-dvh">
+        <div className="fixed md:top-[8.125rem] top-16 lg:left-16 left-auto lg:right-auto right-1 md:w-[6.063rem] w-20 aspect-square z-10">
           <Image
             className="w-full h-auto animate-[spin_7s_ease-in-out_infinite]"
             src="/images/block-circle-logo.png"
@@ -118,16 +142,24 @@ export default function Home() {
           </VerticalNavBar>
         </div>
         <div ref={parentRef}>
-          <div className=" w-full h-dvh panel pt-header relative">
-            <TopBanner isShow={sectionIndex === 0} scrollDone={!isAnimating} />
+          <div className="w-full lg:h-dvh panel pt-header relative h-[500px]">
+            <span
+              className="absolute top-24 w-1 h-1 block bg-red-600"
+              ref={refTopBanner}
+            ></span>
+            <TopBanner isShow={sectionIndex === 0} scrollDone={_scrollDone} />
           </div>
-          {/* <div className=" w-full h-dvh panel pt-header relative">
-            <AboutUs isShow={sectionIndex === 1} scrollDone={!isAnimating} />
+          <div className="w-full lg:h-dvh panel pt-header relative">
+            <span
+              className="absolute top-24 w-1 h-1 block bg-red-600"
+              ref={refAboutus}
+            ></span>
+            <AboutUs isShow={sectionIndex === 1} scrollDone={_scrollDone} />
           </div>
-          <div className=" w-full h-dvh panel pt-header relative">
+          <div className=" w-full lg:h-dvh panel pt-header relative">
             <Services isShow={sectionIndex === 2} scrollDone={!isAnimating} />
           </div>
-          <div className=" w-full h-dvh panel pt-header relative">
+          {/* <div className=" w-full lg:h-dvh panel pt-header relative">
             <Portfolio isShow={sectionIndex === 3} scrollDone={!isAnimating} />
           </div> */}
         </div>

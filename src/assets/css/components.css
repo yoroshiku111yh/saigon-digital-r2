@@ -7,7 +7,7 @@
     @apply flex overflow-visible justify-between items-center min-w-full flex-shrink-0;
   }
   .headline-section {
-    @apply uppercase text-[40px] tracking-wide relative py-1;
+    @apply uppercase text-[2.5rem] tracking-wide relative py-1;
   }
   .headline-section:after {
     content: "";
