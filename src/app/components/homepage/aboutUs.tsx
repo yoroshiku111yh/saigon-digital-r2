@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import TypeIt from "typeit";
+import GlogoSVG from "../gLogo";
 
 function AboutUs(props: TypePropsWrappedComponent) {
   const {
@@ -55,7 +56,7 @@ function AboutUs(props: TypePropsWrappedComponent) {
       </div>
       <div className="section__container">
         <div className="section__side" ref={sideBlockRef}>
-          <Image src="/images/g.png" alt="" width={300} height={380} />
+          <GlogoSVG classPath="animate-[glow-svg-3_2s_ease-in-out_infinite_alternate]" />
         </div>
         <div className="section__context" ref={sideContext}>
           <div className="flex flex-col w-full lg:gap-6 gap-3">

@@ -7,6 +7,7 @@ import gsap from "gsap";
 import { useEffect, useMemo, useRef } from "react";
 import Link from "next/link";
 import Flickity from "react-flickity-component";
+import PlogoSVG from "../pLogo";
 
 const flickityOptions = {
   cellAlign: "left",
@@ -14,7 +15,7 @@ const flickityOptions = {
   prevNextButtons: false,
   pageDots: false,
   groupCells: true,
-  wrapAround: true
+  wrapAround: true,
 };
 
 gsap.registerPlugin(useGSAP);
@@ -58,7 +59,10 @@ function Portfolio(props: TypePropsWrappedComponent) {
     { scope: containerRef, dependencies: [scrollDone, isShow] }
   );
   return (
-    <div className="container mx-auto mr-0 pr-0 container-section pb-7" ref={containerRef}>
+    <div
+      className="container mx-auto mr-0 pr-0 container-section pb-7"
+      ref={containerRef}
+    >
       <div className="headline-section relative">
         <h4 className="absolute top-0 left-0" ref={headlineRef}>
           Portfolio
@@ -67,9 +71,12 @@ function Portfolio(props: TypePropsWrappedComponent) {
       </div>
       <div className="section__container z-20">
         <div className="section__side" ref={sideBlockRef}>
-          <Image src="/images/p.png" alt="" width={300} height={380} />
+          <PlogoSVG classPath="animate-[glow-svg-1_2s_ease-in-out_infinite_alternate]" />
         </div>
-        <div className="section__context overflow-y-visible overflow-x-clip w-full" ref={sideContext}>
+        <div
+          className="section__context overflow-y-visible overflow-x-clip w-full"
+          ref={sideContext}
+        >
           <Flickity options={flickityOptions}>
             <div>
               <div className="card-image-item mr-12">

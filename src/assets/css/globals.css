@@ -35,10 +35,10 @@
     @apply lg:pl-[6.25rem] md:pt-14 px-6 pt-6;
   }
   .section__container {
-    @apply flex xl:flex-row flex-col flex-wrap xl:gap-16 gap-10 justify-start items-center pt-14 relative;
+    @apply flex xl:flex-row flex-col flex-wrap gap-6 justify-start items-center pt-14 relative;
   }
   .section__side {
-    @apply xl:w-[14.375rem] md:w-[25%] w-[30%] xl:relative xl:top-auto xl:right-auto absolute z-0 top-10 right-10;
+    @apply xl:w-[300px] md:w-[25%] w-[50%] xl:relative xl:top-auto xl:right-auto absolute z-0 top-10 right-10;
   }
   .section__side img {
     @apply w-full h-auto;

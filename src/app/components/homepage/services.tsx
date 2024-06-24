@@ -6,6 +6,7 @@ import gsap from "gsap";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useRef } from "react";
+import SlogoSVG from "../sLogo";
 gsap.registerPlugin(useGSAP);
 
 function Services(props: TypePropsWrappedComponent) {
@@ -57,7 +58,7 @@ function Services(props: TypePropsWrappedComponent) {
       </div>
       <div className="section__container">
         <div className="section__side" ref={sideBlockRef}>
-          <Image src="/images/s.png" alt="" width={300} height={380} />
+          <SlogoSVG classPath="animate-[glow-svg-2_2s_ease-in-out_infinite_alternate]" />
         </div>
         <div className="section__context" ref={sideContext}>
           <div className="flex lg:flex-row flex-col flex-wrap [&>*]:flex-1 [&>*]:min-w-52 gap-8">
