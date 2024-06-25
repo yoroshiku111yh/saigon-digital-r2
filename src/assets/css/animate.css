@@ -67,30 +67,3 @@
     fill: #3c3c3c;
   }
 }
-
-@keyframes loaded-animate-logo {
-  0% {
-    top: 0;
-  }
-  25% {
-    top: 30px;
-  }
-  75% {
-    opacity: 1;
-  }
-  100% {
-    top: -83vh;
-    opacity: 0.5;
-  }
-}
-
-@keyframes blur-fade-away {
-  from {
-    opacity: 1;
-    filter: blur(0);
-  }
-  to {
-    opacity: 0;
-    filter: blur(10px);
-  }
-}
