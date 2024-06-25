@@ -148,7 +148,7 @@ export default function TopBanner(props: {
         <div className="2xl:text-8xl lg:text-[5vw] md:text-5xl text-4xl lg:w-[80%] w-full relative">
           <div
             ref={contextRef}
-            className="relative z-10 select-none leading-normal"
+            className="relative z-10 select-none leading-normal strong-text-child-animate"
           >
             {data?.fields.context &&
               documentToReactComponents(data.fields.context)}

@@ -67,3 +67,33 @@
     fill: #3c3c3c;
   }
 }
+
+.strong-text-child-animate {
+  b {
+    background: linear-gradient(
+      to right,
+      #fff 20%,
+      #ff0 40%,
+      #ff0 60%,
+      #fff 80%
+    );
+    background-size: 200% auto;
+
+    color: #000;
+    background-clip: text;
+    text-fill-color: transparent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  b:nth-child(1) {
+    animation: shine 2s linear infinite;
+  }
+  b:nth-child(2) {
+    animation: shine 3s linear infinite;
+  }
+}
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
