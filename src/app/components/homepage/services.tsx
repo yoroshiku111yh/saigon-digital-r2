@@ -39,7 +39,7 @@ interface TypeServiceData {
 }
 
 function Services(props: TypePropsWrappedComponent) {
-  const { data, error, isLoading } = useSWR("section-services", () => {
+  const { data, error, isLoading } = useSWR("/section-services", () => {
     const entryId = process.env.CONTENTFUL_SERVICES_ENTRY_ID;
     if (!entryId) {
       console.error("MISSING .ENV");
