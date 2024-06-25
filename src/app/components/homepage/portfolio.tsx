@@ -8,6 +8,10 @@ import { useEffect, useMemo, useRef } from "react";
 import Link from "next/link";
 import Flickity from "react-flickity-component";
 import PlogoSVG from "../pLogo";
+import { Metadata } from "next";
+import { ContentfulAsset, Sys } from "@/utils/type/contentful";
+import { getEntryById } from "@/utils/api";
+import useSWR from "swr";
 
 const flickityOptions = {
   cellAlign: "left",
@@ -16,10 +20,45 @@ const flickityOptions = {
   pageDots: false,
   groupCells: true,
   wrapAround: true,
+  reloadOnUpdate : true
 };
+
+////////////////////////
+
+interface ReferenceBlockFields {
+  headline: string;
+  title: string;
+  url: string;
+  categories: { text: string }[];
+  thumbnail: ContentfulAsset;
+}
+
+interface ReferenceBlock {
+  metadata: Metadata;
+  sys: Sys;
+  fields: ReferenceBlockFields;
+}
+
+interface TypePortfolioData {
+  fields: {
+    headline: string;
+    referenceBlocks: ReferenceBlock[];
+  };
+  sys: Sys;
+}
+
+///////////////////////
 
 gsap.registerPlugin(useGSAP);
 function Portfolio(props: TypePropsWrappedComponent) {
+  const { data, error, isLoading } = useSWR("/section-portfolio", () => {
+    const entryId = process.env.CONTENTFUL_PORTFOLIO_ENTRY_ID;
+    if (!entryId) return null;
+    return getEntryById<TypePortfolioData>({
+      id: entryId,
+      selectField: ["fields"],
+    }).then((entry) => entry);
+  });
   const {
     containerRef,
     headlineRef,
@@ -34,20 +73,22 @@ function Portfolio(props: TypePropsWrappedComponent) {
     []
   );
   useEffect(() => {
-    timeline.fromTo(
-      textDecorRef.current,
-      {
-        x: -20,
-        opacity: 0,
-      },
-      {
-        x: 0,
-        opacity: 1,
-        duration: 0.35,
-      },
-      "label-1"
-    );
-  }, []);
+    if (textDecorRef.current) {
+      timeline.fromTo(
+        textDecorRef.current,
+        {
+          x: -20,
+          opacity: 0,
+        },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 0.35,
+        },
+        "label-1"
+      );
+    }
+  }, [textDecorRef.current]);
   useGSAP(
     () => {
       if (isShow && scrollDone) {
@@ -58,6 +99,8 @@ function Portfolio(props: TypePropsWrappedComponent) {
     },
     { scope: containerRef, dependencies: [scrollDone, isShow] }
   );
+  if (isLoading) return "Loading...";
+  if (error) return "An error has occurred: " + JSON.stringify(error);
   return (
     <div
       className="container mx-auto mr-0 pr-0 container-section pb-7"
@@ -65,9 +108,9 @@ function Portfolio(props: TypePropsWrappedComponent) {
     >
       <div className="headline-section relative">
         <h4 className="absolute top-0 left-0" ref={headlineRef}>
-          Portfolio
+          {data && data.fields.headline}
         </h4>
-        <span className="opacity-0">Portfolio</span>
+        <span className="opacity-0">{data && data.fields.headline}</span>
       </div>
       <div className="section__container z-20">
         <div className="section__side" ref={sideBlockRef}>
@@ -77,30 +120,56 @@ function Portfolio(props: TypePropsWrappedComponent) {
           className="section__context overflow-y-visible overflow-x-clip w-full"
           ref={sideContext}
         >
-          <Flickity options={flickityOptions}>
-            <div>
-              <Link href="/" className="card-image-item mr-12">
-                <div className="card-image-item__headline">
-                  <h5>Phomi</h5>
-                </div>
-                <div className="card-image-item__thumbnail">
-                  <Image
-                    src="/images/thumb-1.png"
-                    alt="thumb-1"
-                    width={400}
-                    height={300}
-                  />
-                </div>
-                <div className="card-image-item__contain">
-                  <h5 className="card-image-item__title">Gleamy portfolio</h5>
-                  <div className="flex flex-row gap-3 justify-center items-center text-base font-light">
-                    <span className="dot"></span>
-                    <Link href="/">UI/UX</Link>
+          {data && (
+            <Flickity options={flickityOptions}>
+              {data.fields.referenceBlocks.map((item, index) => {
+                return (
+                  <div key={index}>
+                    <Link
+                      href={item.fields.url}
+                      className="card-image-item mr-12"
+                    >
+                      <div className="card-image-item__headline">
+                        <h5>{item.fields.headline}</h5>
+                      </div>
+                      <div className="card-image-item__thumbnail">
+                        <Image
+                          src={"https:" + item.fields.thumbnail.fields.file.url}
+                          alt={item.fields.thumbnail.fields.file.fileName}
+                          width={
+                            item.fields.thumbnail.fields.file.details.image
+                              ?.width
+                          }
+                          height={
+                            item.fields.thumbnail.fields.file.details.image
+                              ?.height
+                          }
+                        />
+                      </div>
+                      <div className="card-image-item__contain">
+                        <h5 className="card-image-item__title">
+                          {item.fields.title}
+                        </h5>
+                        <div className="inline-flex flex-wrap gap-2">
+                          {item.fields.categories.map((item, index) => {
+                            return (
+                              <div
+                                key={index}
+                                className="flex flex-row gap-3 justify-center items-center text-base font-light"
+                              >
+                                <span className="dot"></span>
+                                <span>{item.text}</span>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    </Link>
                   </div>
-                </div>
-              </Link>
-            </div>
-          </Flickity>
+                );
+              })}
+            </Flickity>
+          )}
         </div>
       </div>
       <Image

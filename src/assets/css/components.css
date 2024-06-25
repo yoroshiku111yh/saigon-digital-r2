@@ -49,7 +49,7 @@
     @apply line-clamp-4 leading-normal;
   }
   .card-image-item {
-    @apply relative lg:w-[25rem] w-[300px] transition-all;
+    @apply relative lg:w-[25rem] w-[300px] transition-all inline-block;
   }
   .card-image-item__thumbnail {
     @apply overflow-hidden relative aspect-[400/300] w-full z-10;

@@ -4,13 +4,34 @@ import React, { useEffect, useMemo, useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import GlogoSVG from "../gLogo";
-
+import { getEntryById } from "@/utils/api";
+import useSWR from "swr";
+import { Sys } from "@/utils/type/contentful";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { Document } from "@contentful/rich-text-types";
+import { useGetContext } from "@/app/providers";
 gsap.registerPlugin(useGSAP);
+
+interface TypeTopBannerData {
+  sys: Sys;
+  fields: {
+    context: Document;
+  };
+}
 
 export default function TopBanner(props: {
   isShow: boolean;
   scrollDone: boolean;
 }) {
+  const { data, isLoading } = useSWR("/hero-banner", () => {
+    const entryId = process.env.CONTENTFUL_HERO_BANNER_ENTRY_ID;
+    if (!entryId) return null;
+    return getEntryById<TypeTopBannerData>({
+      id: entryId,
+      selectField: ["fields"],
+    }).then((entry) => entry);
+  });
+  const { setIsLoading } = useGetContext();
   const { isShow, scrollDone } = props;
   const containerRef = useRef(null);
   const marqueeRef1 = useRef(null);
@@ -88,6 +109,11 @@ export default function TopBanner(props: {
     },
     { scope: containerRef, dependencies: [scrollDone, isShow] }
   );
+  useEffect(() => {
+    if (!isLoading) {
+      setIsLoading(false);
+    }
+  }, [isLoading]);
   return (
     <div className="w-full h-full" ref={containerRef}>
       <div className="absolute w-full h-full overflow-x-clip overflow-y-visible top-0 left-0">
@@ -124,11 +150,8 @@ export default function TopBanner(props: {
             ref={contextRef}
             className="relative z-10 select-none leading-normal"
           >
-            Brand .Design .Product.
-            <br />
-            In-Hous Development.
-            <br />
-            &More
+            {data?.fields.context &&
+              documentToReactComponents(data.fields.context)}
           </div>
           <div
             ref={textDecor}

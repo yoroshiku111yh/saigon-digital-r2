@@ -38,56 +38,60 @@ function withScrollSectionAnimation(
       () => gsap.timeline({ paused: true, yoyo: true }),
       []
     );
-    const { isMobile } = useGetContext();
+    const { isMobile, isLoading } = useGetContext();
     useEffect(() => {
-      timeline
-        .fromTo(
-          headlineRef.current,
-          {
-            opacity: 0,
-          },
-          {
-            opacity: 1,
-            duration: 0.15,
-            onStart: () => {
-              let text = baffle(headlineRef.current);
-              text.set({
-                characters: "!/|~#.^+*$#%nwf",
-                speed: 100,
-              });
-              text.start();
-              text.reveal(700);
+      if (sideContext.current && sideBlockRef.current && headlineRef.current) {
+        timeline
+          .fromTo(
+            headlineRef.current,
+            {
+              opacity: 0,
             },
-          },
-          "label-1"
-        )
-        .fromTo(
-          sideBlockRef.current,
-          {
-            opacity: 0,
-            y: 20,
-          },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.25,
-          },
-          "label-2"
-        )
-        .fromTo(
-          sideContext.current,
-          {
-            opacity: 0,
-            y: -20,
-          },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.35,
-          },
-          "label-2"
-        );
-    }, []);
+            {
+              opacity: 1,
+              duration: 0.15,
+              onStart: () => {
+                if (headlineRef.current) {
+                  let text = baffle(headlineRef.current);
+                  text.set({
+                    characters: "!/|~#.^+*$#%nwf",
+                    speed: 100,
+                  });
+                  text.start();
+                  text.reveal(700);
+                }
+              },
+            },
+            "label-1"
+          )
+          .fromTo(
+            sideBlockRef.current,
+            {
+              opacity: 0,
+              y: 20,
+            },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.25,
+            },
+            "label-2"
+          )
+          .fromTo(
+            sideContext.current,
+            {
+              opacity: 0,
+              y: -20,
+            },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.35,
+            },
+            "label-2"
+          );
+      }
+    }, [sideContext.current, sideBlockRef.current, headlineRef.current]);
     useGSAP(
       () => {
         if (!isMobile) {
@@ -96,11 +100,11 @@ function withScrollSectionAnimation(
           } else if (!isShow) {
             timeline.reverse();
           }
-        } else {
+        } else if(!isLoading) {
           timeline.play();
         }
       },
-      { scope: containerRef, dependencies: [scrollDone, isMobile] }
+      { scope: containerRef, dependencies: [scrollDone, isMobile, isLoading] }
     );
     return (
       <WrappedComponent

@@ -7,7 +7,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Image from "next/image";
 import Link from "next/link";
-import { ReactElement, use, useEffect, useMemo, useRef, useState } from "react";
+import { ReactElement, useEffect, useMemo, useRef } from "react";
 import SlogoSVG from "../sLogo";
 import { getEntryById } from "@/utils/api";
 import { Metadata, Sys } from "@/utils/type/contentful";
@@ -41,10 +41,7 @@ interface TypeServiceData {
 function Services(props: TypePropsWrappedComponent) {
   const { data, error, isLoading } = useSWR("/section-services", () => {
     const entryId = process.env.CONTENTFUL_SERVICES_ENTRY_ID;
-    if (!entryId) {
-      console.error("MISSING .ENV");
-      return null;
-    }
+    if (!entryId) return null;
     return getEntryById<TypeServiceData>({
       id: entryId,
       selectField: ["fields"],
@@ -64,20 +61,22 @@ function Services(props: TypePropsWrappedComponent) {
     []
   );
   useEffect(() => {
-    timeline.fromTo(
-      textDecorRef.current,
-      {
-        x: -20,
-        opacity: 0,
-      },
-      {
-        x: 0,
-        opacity: 1,
-        duration: 0.35,
-      },
-      "label-1"
-    );
-  }, []);
+    if (textDecorRef.current) {
+      timeline.fromTo(
+        textDecorRef.current,
+        {
+          x: -20,
+          opacity: 0,
+        },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 0.35,
+        },
+        "label-1"
+      );
+    }
+  }, [textDecorRef.current]);
   useGSAP(
     () => {
       if (isShow && scrollDone) {

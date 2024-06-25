@@ -15,22 +15,22 @@
     "@vercel/stega" "^0.1.2"
     json-pointer "^0.6.2"
 
-"@contentful/rich-text-react-renderer@^15.21.3":
-  version "15.21.3"
-  resolved "https://registry.yarnpkg.com/@contentful/rich-text-react-renderer/-/rich-text-react-renderer-15.21.3.tgz#0246eb62017077029f6a618da307202255cff2e7"
-  integrity sha512-TMs9HBe8+Zue3YFR8J9TpUKVs53I5/ln7GrO3u6i3A5zIM1BRqshdc5wb3aa1kc9drRub/wLhVtog0zBiIqj/Q==
+"@contentful/rich-text-react-renderer@^15.22.1":
+  version "15.22.1"
+  resolved "https://registry.yarnpkg.com/@contentful/rich-text-react-renderer/-/rich-text-react-renderer-15.22.1.tgz#e20052793b708461d5f77f76b763cc7b64ff97e7"
+  integrity sha512-VmizFF8v2YcjRggfYAn0yW5sV5a5NFsl3PM9JoNrzI5FIAD3nEl1audJGTednsxPoAnC/RYECyL2AhbytjwQKw==
   dependencies:
-    "@contentful/rich-text-types" "^16.5.3"
+    "@contentful/rich-text-types" "^16.6.1"
 
 "@contentful/rich-text-types@^16.0.2":
   version "16.5.2"
   resolved "https://registry.yarnpkg.com/@contentful/rich-text-types/-/rich-text-types-16.5.2.tgz#924641091d5ae83b9fb34908745a62d652b44d68"
   integrity sha512-qD98Amp/vWxCYMtv7yprh4Ry3QHFX50sf+i3E6e/WRquz+aUW2ilqmQqW6ucb4F2dlatUxMbOOhZOFazv2XLjg==
 
-"@contentful/rich-text-types@^16.5.3":
-  version "16.5.3"
-  resolved "https://registry.yarnpkg.com/@contentful/rich-text-types/-/rich-text-types-16.5.3.tgz#29c5e8f0e11f0e4fc00d1a76513fe946bd02adfb"
-  integrity sha512-IoOcVjWBXkMt3cfQRM99/GBy2H/kMzwotrY0mrEzfLrlABBDJHvHchjTzB8UlwCRojmVz/22YKF+cKpDvA42jw==
+"@contentful/rich-text-types@^16.6.1":
+  version "16.6.1"
+  resolved "https://registry.yarnpkg.com/@contentful/rich-text-types/-/rich-text-types-16.6.1.tgz#d7a0890b885ab681028aa7f1085e219d8b2c51be"
+  integrity sha512-Rb8QusSMSTMUP4dbpBDWgwGJoqKDYRxPcNXySP0URYTQ6pViJ2SXhVc81RJCgJ5Fb02n5ctbvDYGtcnBH8yhDw==
 
 "@eslint-community/eslint-utils@^4.2.0":
   version "4.4.0"

@@ -12,15 +12,10 @@ gsap.registerPlugin(useGSAP);
 
 export default function LoadingScreen() {
   const { toggleBodyOverflow } = useBodyOverflowToggle(true);
-  const { isLoading, setIsLoading } = useGetContext();
+  const { isLoading } = useGetContext();
   const backgroundRef = useRef(null);
   const decorRef = useRef(null);
   const loadingScreenRef = useRef(null);
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-  }, []);
   useGSAP(
     () => {
       if (!isLoading) {

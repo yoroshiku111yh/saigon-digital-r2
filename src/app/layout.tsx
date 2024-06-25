@@ -23,8 +23,8 @@ export default function RootLayout({
         <ContextCommonProvider>
           <Header />
           {children}
-          <PopupSearch />
           <LoadingScreen />
+          <PopupSearch />
         </ContextCommonProvider>
       </body>
     </html>
