@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const useBodyOverflowToggle = (isOpen: boolean) => {
-    const [isOverflowHidden, setIsOverflowHidden] = useState<Boolean>(isOpen);
+    const [isOverflowHidden, setIsOverflowHidden] = useState<boolean>(isOpen);
     useEffect(() => {
         if (isOverflowHidden) {
             document.body.style.overflow = 'hidden';
@@ -17,7 +17,7 @@ const useBodyOverflowToggle = (isOpen: boolean) => {
         setIsOverflowHidden(prevState => !prevState);
     };
 
-    return { isOverflowHidden, toggleBodyOverflow };
+    return { isOverflowHidden, toggleBodyOverflow, setIsOverflowHidden };
 };
 
 export default useBodyOverflowToggle;

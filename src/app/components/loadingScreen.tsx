@@ -1,6 +1,5 @@
 "use client";
 
-import useBodyOverflowToggle from "@/utils/hooks/useBodyOverflowToggle ";
 import { useGetContext } from "../providers";
 import GlogoSVG from "./gLogo";
 import Image from "next/image";
@@ -11,14 +10,17 @@ import { useGSAP } from "@gsap/react";
 gsap.registerPlugin(useGSAP);
 
 export default function LoadingScreen() {
-  const { toggleBodyOverflow } = useBodyOverflowToggle(true);
-  const { isLoading } = useGetContext();
+  const { isLoading, setIsOverflowHidden } = useGetContext();
   const backgroundRef = useRef(null);
   const decorRef = useRef(null);
   const loadingScreenRef = useRef(null);
+  useEffect(() => {
+    setIsOverflowHidden(true);
+  }, []);
   useGSAP(
     () => {
       if (!isLoading) {
+        setIsOverflowHidden(false);
         gsap.to(backgroundRef.current, {
           bottom: "100%",
           duration: 0.75,
@@ -35,9 +37,6 @@ export default function LoadingScreen() {
           opacity: 0,
           duration: 0.5,
           delay: 0.5,
-          onComplete: () => {
-            toggleBodyOverflow();
-          },
         });
       }
     },

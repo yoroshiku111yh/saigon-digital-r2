@@ -20,7 +20,8 @@ const flickityOptions = {
   pageDots: false,
   groupCells: true,
   wrapAround: true,
-  reloadOnUpdate : true
+  reloadOnUpdate : true,
+  pauseAutoPlayOnHover: false
 };
 
 ////////////////////////
@@ -103,7 +104,7 @@ function Portfolio(props: TypePropsWrappedComponent) {
   if (error) return "An error has occurred: " + JSON.stringify(error);
   return (
     <div
-      className="container mx-auto mr-0 pr-0 container-section pb-7"
+      className="container mx-auto lg:ml-[4.5vw] mr-0 pr-0 container-section pb-7"
       ref={containerRef}
     >
       <div className="headline-section relative">

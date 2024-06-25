@@ -1,9 +1,11 @@
 "use client";
 import { useGSAP } from "@gsap/react";
 import Link from "next/link";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import Image from "next/image";
+import useHashUrl from "@/utils/hooks/useHashUrl";
+import { useGetContext } from "@/app/providers";
 gsap.registerPlugin(useGSAP);
 
 export default function ContentMenu(props: {
@@ -82,6 +84,7 @@ export default function ContentMenu(props: {
     },
     { dependencies: [isOpen], scope: container }
   );
+  const { hashName } = useHashUrl();
   return (
     <div
       ref={container}
@@ -90,9 +93,13 @@ export default function ContentMenu(props: {
       <div ref={waveDecor} className="wave-decor-menu z-20"></div>
       <div className="w-screen absolute top-0 left-0 right-0 z-20">
         <div className="flex justify-end items-center container mx-auto relative h-header">
-          <div className={`cursor-pointer hamburger ${isOpen && "-open"}`} onClick={onClick} ref={btnExitRef} >
+          <div
+            className={`cursor-pointer hamburger ${isOpen && "-open"}`}
+            onClick={onClick}
+            ref={btnExitRef}
+          >
             <svg
-            className="stroke-black"
+              className="stroke-black"
               stroke="#fff"
               width="48px"
               height="48px"
@@ -125,13 +132,37 @@ export default function ContentMenu(props: {
             </h4>
             <ul className="menu-header-list xl:text-5xl lg:text-3xl text-2xl font-semibold">
               <li>
-                <Link className="link-btn py-1 px-2 -active" href="/">About us</Link>
+                <a
+                  className={`link-btn py-1 px-2 inline-block min-w-60 ${
+                    hashName === "#about-us" && "-active"
+                  }`}
+                  onClick={onClick}
+                  href="#about-us"
+                >
+                  About us
+                </a>
               </li>
               <li>
-                <Link className="link-btn py-1 px-2" href="/">Services</Link>
+                <a
+                  className={`link-btn py-1 px-2 inline-block min-w-60 ${
+                    hashName === "#services" && "-active"
+                  }`}
+                  onClick={onClick}
+                  href="#services"
+                >
+                  Services
+                </a>
               </li>
               <li>
-                <Link className="link-btn py-1 px-2" href="/">Portfolio</Link>
+                <a
+                  className={`link-btn py-1 px-2 inline-block min-w-60 ${
+                    hashName === "#portfolio" && "-active"
+                  }`}
+                  onClick={onClick}
+                  href="#portfolio"
+                >
+                  Portfolio
+                </a>
               </li>
             </ul>
           </div>
@@ -141,13 +172,19 @@ export default function ContentMenu(props: {
             </h4>
             <ul className="menu-header-list">
               <li>
-                <Link className="link-btn py-1 px-2" href="/">instagram</Link>
+                <Link className="link-btn py-1 px-2 inline-block min-w-60" href="/">
+                  instagram
+                </Link>
               </li>
               <li>
-                <Link className="link-btn py-1 px-2" href="/">Facebook</Link>
+                <Link className="link-btn py-1 px-2 inline-block min-w-60" href="/">
+                  Facebook
+                </Link>
               </li>
               <li>
-                <Link className="link-btn py-1 px-2" href="/">twitter</Link>
+                <Link className="link-btn py-1 px-2 inline-block min-w-60" href="/">
+                  twitter
+                </Link>
               </li>
             </ul>
           </div>
@@ -158,17 +195,20 @@ export default function ContentMenu(props: {
             <ul className="menu-header-list">
               <li>
                 <Link href="/">
-                  <strong className="lg:inline block">Phone:</strong> (555) 123-4567
+                  <strong className="lg:inline block">Phone:</strong> (555)
+                  123-4567
                 </Link>
               </li>
               <li>
                 <Link href="/">
-                  <strong className="lg:inline block">Email:</strong> john.doe@example.com
+                  <strong className="lg:inline block">Email:</strong>{" "}
+                  john.doe@example.com
                 </Link>
               </li>
               <li>
                 <Link href="/">
-                  <strong className="lg:inline block">Address:</strong> 123 Main St, Springfield, IL 62701
+                  <strong className="lg:inline block">Address:</strong> 123 Main
+                  St, Springfield, IL 62701
                 </Link>
               </li>
             </ul>

@@ -92,6 +92,7 @@
       }
     }
     &.-active {
+      @apply select-none pointer-events-none;
       &:after {
         @apply h-full;
       }

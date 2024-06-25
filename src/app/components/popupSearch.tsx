@@ -3,24 +3,23 @@
 import { useEffect, useRef } from "react";
 import { useGetContext } from "../providers";
 import { useOnClickOutside } from "usehooks-ts";
-import useBodyOverflowToggle from "@/utils/hooks/useBodyOverflowToggle ";
 
 export default function PopupSearch() {
-  const { isOpenSearch, setIsOpenSearch, setIsPauseScrollSection } =
+  const { isOpenSearch, setIsOpenSearch, setIsPauseScrollSection, setIsOverflowHidden } =
     useGetContext();
   const wrapperRef = useRef(null);
   const handleClickOutside = () => {
     setIsOpenSearch(false);
   };
-  const {toggleBodyOverflow} = useBodyOverflowToggle(false);
   useOnClickOutside(wrapperRef, handleClickOutside);
   useEffect(() => {
     if (isOpenSearch) {
+      setIsOverflowHidden(true);
       setIsPauseScrollSection(true);
     } else {
+      setIsOverflowHidden(false);
       setIsPauseScrollSection(false);
     }
-    toggleBodyOverflow();
   }, [isOpenSearch]);
   return (
     <>

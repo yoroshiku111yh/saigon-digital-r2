@@ -3,7 +3,7 @@
 import useScrollOnePage from "@/utils/hooks/useScrollOnePage";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import TopBanner from "./components/homepage/topBanner";
 import AboutUs from "./components/homepage/aboutUs";
 import Services from "./components/homepage/services";
@@ -11,41 +11,53 @@ import Portfolio from "./components/homepage/portfolio";
 import VerticalNavBar from "./components/verticalNavBar";
 import Image from "next/image";
 import { useGetContext } from "./providers";
-
+import useHashUrl from "@/utils/hooks/useHashUrl";
 gsap.registerPlugin(useGSAP);
 
 export default function Home() {
-  const [sectionIndex, setSectionIndex] = useState<number>(0);
   const parentRef = useRef(null);
   const sectionElements = useRef<NodeListOf<Element> | null>(null);
-  const { isMobile, mainElmRef } = useGetContext();
+  const { hashName } = useHashUrl();
+  const {
+    isPauseScrollSection,
+    sectionIndex,
+    setSectionIndex,
+    isMobile,
+    isLoading,
+    setIsOverflowHidden,
+  } = useGetContext();
   useEffect(() => {
     let sections = document.querySelectorAll(".panel");
     sectionElements.current = sections;
   }, []);
+  useEffect(() => {
+    if (!isLoading && !isMobile) {
+      const indexMap: { [key: string]: number } = {
+        "#about-us": 1,
+        "#services": 2,
+        "#portfolio": 3,
+      };
+      setSectionIndex(indexMap[hashName ?? ""] ?? 0);
+      setAnimating(false);
+    }
+  }, [hashName, isLoading]);
 
-  const { isPauseScrollSection } = useGetContext();
-
-  const eventScrollUp = () => {
-    if (!sectionElements.current) return false;
-    if (!isAnimating) {
-      const index = Math.min(
-        sectionIndex + 1,
-        sectionElements.current.length - 1
+  const handleScrollUp = () => {
+    if (!isAnimating && sectionElements.current) {
+      setSectionIndex(
+        Math.min(sectionIndex + 1, sectionElements.current.length - 1)
       );
-      setSectionIndex(index);
     }
   };
-  const eventScrollDown = () => {
-    if (!sectionElements.current) return false;
-    if (!isAnimating) {
-      const index = Math.max(sectionIndex - 1, 0);
-      setSectionIndex(index);
+
+  const handleScrollDown = () => {
+    if (!isAnimating && sectionElements.current) {
+      setSectionIndex(Math.max(sectionIndex - 1, 0));
     }
   };
   const { isAnimating, setAnimating, setIsDisable } = useScrollOnePage({
-    onScrollUp: eventScrollUp,
-    onScrollDown: eventScrollDown,
+    onScrollUp: handleScrollUp,
+    onScrollDown: handleScrollDown,
     typeScroll: ["wheel", "touch"],
   });
 
@@ -64,15 +76,19 @@ export default function Home() {
   useGSAP(
     () => {
       if (!isAnimating) {
-        setAnimating(true);
         const transYIndex = sectionIndex;
         gsap.to(parentRef.current, {
           y: -window.innerHeight * transYIndex,
           duration: 1,
           ease: "expo.inOut",
           delay: 0.1,
+          onStart: () => {
+            setAnimating(true);
+            setIsOverflowHidden(true);
+          },
           onComplete: () => {
             setAnimating(false);
+            setIsOverflowHidden(false);
           },
         });
       }
@@ -82,7 +98,7 @@ export default function Home() {
   const _scrollDone = isMobile ? true : !isAnimating;
   return (
     <>
-      <main className="lg:overflow-hidden w-full lg:h-dvh" ref={mainElmRef}>
+      <main className="lg:overflow-clip w-full lg:h-dvh">
         <BtnFloat1 />
         <BtnFloat2 />
         <div
@@ -98,13 +114,22 @@ export default function Home() {
           <div className="w-full lg:h-dvh panel lg:pt-header pt-16 relative h-[50vh] min-h-[500px]">
             <TopBanner isShow={sectionIndex === 0} scrollDone={_scrollDone} />
           </div>
-          <div className="w-full lg:h-dvh panel pt-header lg:flex lg:justify-center lg:flex-col relative pt-5">
+          <div
+            id="about-us"
+            className="w-full lg:h-dvh panel pt-header lg:flex lg:justify-center lg:flex-col relative pt-5"
+          >
             <AboutUs isShow={sectionIndex === 1} scrollDone={_scrollDone} />
           </div>
-          <div className=" w-full lg:h-dvh panel pt-header relative">
+          <div
+            id="services"
+            className=" w-full lg:h-dvh panel pt-header relative"
+          >
             <Services isShow={sectionIndex === 2} scrollDone={_scrollDone} />
           </div>
-          <div className=" w-full lg:h-dvh panel pt-header relative">
+          <div
+            id="portfolio"
+            className=" w-full lg:h-dvh panel pt-header relative"
+          >
             <Portfolio isShow={sectionIndex === 3} scrollDone={_scrollDone} />
           </div>
         </div>

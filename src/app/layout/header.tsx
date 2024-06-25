@@ -4,18 +4,16 @@ import Link from "next/link";
 import "../../assets/css/header.css";
 import Image from "next/image";
 import { useState } from "react";
-import useBodyOverflowToggle from "@/utils/hooks/useBodyOverflowToggle ";
 import ContentMenu from "./components/contain-menu";
 import { useGetContext } from "../providers";
 
 export default function Header() {
   const [isOpenMenu, setOpenMenu] = useState<boolean | null>(null);
-  const { toggleBodyOverflow } = useBodyOverflowToggle(false);
   const onClickMenu = () => {
     toggleBodyOverflow();
     setOpenMenu(!isOpenMenu);
   };
-  const { setIsOpenSearch } = useGetContext();
+  const { setIsOpenSearch, toggleBodyOverflow } = useGetContext();
   return (
     <>
       <header className="h-header fixed w-full left-0 right-0 z-30">

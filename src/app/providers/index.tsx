@@ -1,12 +1,11 @@
 "use client";
 
+import useBodyOverflowToggle from "@/utils/hooks/useBodyOverflowToggle ";
 import {
-  MutableRefObject,
   ReactNode,
   createContext,
   useContext,
   useEffect,
-  useRef,
   useState,
 } from "react";
 interface TypeContext {
@@ -17,39 +16,53 @@ interface TypeContext {
   isMobile: boolean;
   isLoading: boolean;
   setIsLoading: (isPause: boolean) => void;
-  mainElmRef: MutableRefObject<HTMLElement | null>;
+  sectionIndex: number;
+  setSectionIndex: (index: number) => void;
+  setIsOverflowHidden : (isHidden : boolean) => void;
+  toggleBodyOverflow : () => void;
+  isOverflowHidden : boolean;
 }
 
 const ContextCommon = createContext<null | TypeContext>(null);
 
-export const ContextCommonProvider = (props: { children: ReactNode }) => {
-  const { children } = props;
-  const [isOpenSearch, setIsOpenSearch] = useState<boolean>(false);
+const useMobileCheck = () => {
   const [isMobile, setIsMobile] = useState<boolean>(false);
-  const [isPauseScrollSection, setIsPauseScrollSection] =
-    useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const mainElmRef = useRef(null);
   useEffect(() => {
     if (window.innerWidth < 1024) {
       setIsMobile(true);
     }
   }, []);
+  return isMobile;
+};
+
+export const ContextCommonProvider = (props: { children: ReactNode }) => {
+  const { children } = props;
+  const [isOpenSearch, setIsOpenSearch] = useState<boolean>(false);
+  const [isPauseScrollSection, setIsPauseScrollSection] =
+    useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [sectionIndex, setSectionIndex] = useState<number>(0);
+  const {isOverflowHidden, toggleBodyOverflow, setIsOverflowHidden} = useBodyOverflowToggle(false);
+  const isMobile = useMobileCheck();
   return (
     <ContextCommon.Provider
-        value={{
-          isOpenSearch,
-          setIsOpenSearch,
-          isPauseScrollSection,
-          setIsPauseScrollSection,
-          isMobile,
-          isLoading,
-          setIsLoading,
-          mainElmRef,
-        }}
-      >
-        {children}
-      </ContextCommon.Provider>
+      value={{
+        isOpenSearch,
+        setIsOpenSearch,
+        isPauseScrollSection,
+        setIsPauseScrollSection,
+        isMobile,
+        isLoading,
+        setIsLoading,
+        sectionIndex,
+        setSectionIndex,
+        toggleBodyOverflow,
+        setIsOverflowHidden,
+        isOverflowHidden,
+      }}
+    >
+      {children}
+    </ContextCommon.Provider>
   );
 };
 

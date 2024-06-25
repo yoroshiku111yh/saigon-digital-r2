@@ -71,6 +71,7 @@ function AboutUs(props: TypePropsWrappedComponent) {
       }
     }
   }, [scrollDone, instanceTypeTitle.current, instanceTypeContext.current]);
+  
   if (isLoading) return "Loading...";
   if (error) return "An error has occurred: " + JSON.stringify(error);
   return (
