@@ -93,9 +93,9 @@
     }
     &.-active {
       @apply select-none pointer-events-none;
-      &:after {
-        @apply h-full;
-      }
+    }
+    &.-active:after {
+      @apply h-full;
     }
   }
 }
