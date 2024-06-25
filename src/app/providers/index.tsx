@@ -9,7 +9,6 @@ import {
   useRef,
   useState,
 } from "react";
-
 interface TypeContext {
   isOpenSearch: boolean;
   setIsOpenSearch: (isOpenSearch: boolean) => void;
@@ -38,19 +37,19 @@ export const ContextCommonProvider = (props: { children: ReactNode }) => {
   }, []);
   return (
     <ContextCommon.Provider
-      value={{
-        isOpenSearch,
-        setIsOpenSearch,
-        isPauseScrollSection,
-        setIsPauseScrollSection,
-        isMobile,
-        isLoading,
-        setIsLoading,
-        mainElmRef,
-      }}
-    >
-      {children}
-    </ContextCommon.Provider>
+        value={{
+          isOpenSearch,
+          setIsOpenSearch,
+          isPauseScrollSection,
+          setIsPauseScrollSection,
+          isMobile,
+          isLoading,
+          setIsLoading,
+          mainElmRef,
+        }}
+      >
+        {children}
+      </ContextCommon.Provider>
   );
 };
 

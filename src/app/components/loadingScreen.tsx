@@ -13,7 +13,6 @@ gsap.registerPlugin(useGSAP);
 export default function LoadingScreen() {
   const { toggleBodyOverflow } = useBodyOverflowToggle(true);
   const { isLoading, setIsLoading } = useGetContext();
-  const containerRef = useRef(null);
   const backgroundRef = useRef(null);
   const decorRef = useRef(null);
   const loadingScreenRef = useRef(null);
@@ -47,7 +46,7 @@ export default function LoadingScreen() {
         });
       }
     },
-    { scope: containerRef, dependencies: [isLoading] }
+    { scope: loadingScreenRef, dependencies: [isLoading] }
   );
   return (
     <div
