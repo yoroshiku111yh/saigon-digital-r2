@@ -9,9 +9,10 @@ import AboutUs from "./components/homepage/aboutUs";
 import Services from "./components/homepage/services";
 import Portfolio from "./components/homepage/portfolio";
 import VerticalNavBar from "./components/verticalNavBar";
-import Image from "next/image";
 import { useGetContext } from "./providers";
 import useHashUrl from "@/utils/hooks/useHashUrl";
+import LogoFloat from "./components/logoFloat";
+import IconVideoFloat from "./components/IconVideoFloat";
 gsap.registerPlugin(useGSAP);
 
 export default function Home() {
@@ -99,8 +100,8 @@ export default function Home() {
   return (
     <>
       <main className="lg:overflow-clip w-full lg:h-dvh">
-        <BtnFloat1 />
-        <BtnFloat2 />
+        <LogoFloat />
+        <IconVideoFloat />
         <div
           className={`md:w-32 w-10 lg:flex flex-col items-center justify-center bg-black text-white fixed top-0 bottom-0 left-0 md:pb-8 pb-12 hidden`}
         >
@@ -137,45 +138,3 @@ export default function Home() {
     </>
   );
 }
-
-const BtnFloat1 = () => {
-  return (
-    <div className="fixed md:top-18 top-24 xl:left-16 left-auto xl:right-auto right-3 md:w-[6.063rem] w-20 aspect-square z-10">
-      <Image
-        className="w-full h-auto animate-[spin_7s_ease-in-out_infinite]"
-        src="/images/block-circle-logo.png"
-        width={97}
-        height={97}
-        alt=""
-      />
-      <Image
-        className="absolute top-0 left-0 bottom-0 right-0 m-auto"
-        src="/images/mini-logo.png"
-        alt=""
-        width={31}
-        height={35}
-      />
-    </div>
-  );
-};
-
-const BtnFloat2 = () => {
-  return (
-    <div className="fixed md:bottom-10 bottom-6 md:right-16 right-6 md:w-28 w-20 aspect-square z-10">
-      <Image
-        className="w-full h-auto animate-[spin_7s_ease-in-out_infinite]"
-        src="/images/watch-video.png"
-        width={110}
-        height={110}
-        alt=""
-      />
-      <Image
-        className="absolute top-0 left-0 bottom-0 right-0 m-auto animate-pulse"
-        src="/images/ico-play.png"
-        alt=""
-        width={13}
-        height={18}
-      />
-    </div>
-  );
-};
